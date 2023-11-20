@@ -1,0 +1,10 @@
+<div class="flex my-5">
+  <div class="w-[90%] mx-auto">
+    <div *ngFor="let item of courses" (click)="addCourseFilter(item[0])" class="inline-block">
+      <div *ngIf="course == item[0]"
+           class=" mx-1 my-1 bg-amber-400 rounded-2xl p-3">      {{item[1]}}</div>
+      <div *ngIf="course != item[0]"
+           class=" mx-1 my-1 bg-amber-300 rounded-2xl p-3 hover:bg-amber-400">      {{item[1]}}</div>
+    </div>
+  </div>
+</div>

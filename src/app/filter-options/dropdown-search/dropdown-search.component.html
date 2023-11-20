@@ -1,0 +1,33 @@
+<div class=" min-h-[100px] ">
+
+  <div class="w-max flex mx-auto h-[50px]">
+
+    <input type="text" [(ngModel)]="placeHolder" class="h-[50%] rounded p-2 my-auto bg-gray-100" id="dropdown-search">
+
+    <button (click)="search()" class="mx-auto my-auto hover:bg-amber-300 rounded w-[80px] h-[60%] active:bg-amber-400">Поиск</button>
+
+  </div>
+
+<!--  <hr class="border-amber-300 border-2">-->
+
+  <div class="search-result w-[200px] mx-auto min-h-[100px] max-h-[100px]  mt-5 mb-5 overflow-auto">
+
+    <div class=" bg-gray-100  rounded">
+      <div class="search-result-items p-2 hover:rounded hover:bg-amber-300 active:bg-amber-400" *ngFor="let item of searchResult" (click)="addSubjectFilter(item)">
+        {{item[1]}}
+      </div>
+    </div>
+
+    <div class="search-result-empty" *ngIf="searchResult?.length == 0">No Result Found</div>
+
+  </div>
+
+  <div class="w-[90%] mx-auto mb-5">
+    <div *ngFor="let item of subject" class="inline-block">
+
+      <div *ngIf="item[1] != '' " class=" mx-1 my-1 bg-amber-300 rounded-2xl p-3 hover:bg-amber-400" (click)="deleteSubjectFilter(item)">   {{item[1]}}</div>
+
+    </div>
+  </div>
+
+</div>

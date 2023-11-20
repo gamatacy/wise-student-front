@@ -1,0 +1,25 @@
+<div class="max-w-[750px] min-h-[150px] shadow rounded-xl mb-3 hover:bg-gray-100" (click)="setFullView(true)">
+
+   <div class="p-5">
+     <h1>{{title | slice:0:75}}</h1>
+     <span>{{text | slice:0:350}}...</span>
+   </div>
+
+
+
+</div>
+
+
+<div *ngIf="fullView">
+  <div class="fixed inset-0 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-70" (click)="setFullView(false)">
+      <div class="bg-white p-8 rounded-lg shadow-md h-[80vh] w-[120vh] overflow-auto" (click)="$event.stopPropagation()">
+
+        <h1 class="text-2xl">{{title}}</h1>
+        <div class="max-h-[75%] overflow-auto"> <span class="text-lg pr-5 text-justify">{{text}}</span></div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
