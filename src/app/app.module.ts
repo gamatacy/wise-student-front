@@ -14,6 +14,9 @@ import {CreatePostComponent} from "./posts/create-post/create-post.component";
 import {PostComponent} from "./posts/post/post.component";
 import {PostListComponent} from "./posts/post-list/post-list.component";
 import {FormsModule} from "@angular/forms";
+import {CreateSubjectComponent} from "./create-subject/create-subject.component";
+import {CommentComponent} from "./posts/post/comment/comment.component";
+import {CreateCommentComponent} from "./posts/post/create-comment/create-comment.component";
 
 @NgModule({
   declarations: [
@@ -42,6 +45,9 @@ import {FormsModule} from "@angular/forms";
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    CreateSubjectComponent,
+    CommentComponent,
+    CreateCommentComponent,
   ],
     bootstrap: [AppComponent]
   }

@@ -13,7 +13,7 @@ export class PostService {
   courseId: number = 1
   sectionId: number = 1
 
-  createPost(files: File[]) {
+  createPost(title : string, text : string, files : File[]) {
 
     const formData = new FormData();
 
@@ -21,6 +21,8 @@ export class PostService {
       formData.append('files', file, file.name);
     }
 
+    formData.append('title', title);
+    formData.append('text', text);
     formData.append('subject_ids', String(this.subjectIds[0]));
     formData.append('course_id', String(this.courseId));
     formData.append('section_id', String(this.sectionId));
@@ -30,5 +32,7 @@ export class PostService {
     )
 
   }
+
+
 
 }

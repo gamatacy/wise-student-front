@@ -1,0 +1,24 @@
+<div class="flex justify-center my-5">
+  <button class="bg-amber-300 p-5 rounded-3xl  text-xl active:bg-amber-400 hover:scale-110" (click)="setFullView(true)">Создать предмет</button>
+</div>
+
+<div *ngIf="fullView">
+  <div class="fixed inset-0 overflow-y-auto">
+    <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-70" (click)="setFullView(false)">
+      <div class="bg-white p-8 rounded-lg shadow-md h-[80vh] w-[120vh] overflow-auto" (click)="$event.stopPropagation()">
+
+        <h1>Создать предмет</h1>
+
+        <label for="title" class="text-lg">Название <br></label>
+        <input id="title" type="text" placeholder="Предмет" [(ngModel)]="subject" class="h-[30px] w-[50%] text-md mb-5">
+
+        <hr class="border-amber-300 border-2 mt-2">
+
+        <div class="flex justify-center my-5">
+          <button class="bg-amber-300 p-5 rounded-3xl  text-xl active:bg-amber-400 hover:scale-110" (click)="sendSubject()">Создать</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
