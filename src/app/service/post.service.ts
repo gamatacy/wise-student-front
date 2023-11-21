@@ -1,38 +1,60 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
+  url = 'http://localhost:8080/wise-students/posts';
+
+
   constructor(private http: HttpClient) {
   }
 
-  subjectIds: number[] = [1]
-  courseId: number = 1
-  sectionId: number = 1
+  subjects: [number, string][][] = []
+  year: number = 1
+  postTypeId: number = 1
+  pageNumber: number = 0
+  pageSize: number = 4
 
-  createPost(title : string, text : string, files : File[]) {
+  // @ts-ignore
+  FILE : File
+
+  postsSearchResult = []
+
+  createPost(title: string, text: string, files: File[]) {
 
     const formData = new FormData();
+
+    formData.append('name', title);
+    formData.append('text', text);
+    formData.append('subjectId', String(this.subjects[0][0]));
+    formData.append('year', String(this.year));
+    formData.append('semester', '1');
+    formData.append('postTypeId', String(this.postTypeId));
 
     for (const file of files) {
       formData.append('files', file, file.name);
     }
 
-    formData.append('title', title);
-    formData.append('text', text);
-    formData.append('subject_ids', String(this.subjectIds[0]));
-    formData.append('course_id', String(this.courseId));
-    formData.append('section_id', String(this.sectionId));
-
-    return this.http.post(
-      "http://localhost:29501/wise-students/posts", formData
-    )
+    return this.http.post(this.url, formData);
 
   }
 
+  getPosts() {
+
+    this.http.get(this.url +
+      `?year=${this.year}
+    &subjectId=${this.subjects[0][0]}
+    &postTypeId=${this.postTypeId}
+    &page_number=${this.pageNumber}
+    &page_size=${this.pageSize}`,
+    ).subscribe(res => {
+
+    })
+
+  }
 
 
 }

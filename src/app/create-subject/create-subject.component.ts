@@ -25,7 +25,8 @@ export class CreateSubjectComponent {
   }
 
   sendSubject() {
-    this.subjectService.createSubject(this.subject)
+    this.subjectService.createSubject(this.subject).subscribe((res) =>
+      console.log(res))
     this.fullView = false
   }
 

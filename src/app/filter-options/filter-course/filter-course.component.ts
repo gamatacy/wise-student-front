@@ -25,7 +25,7 @@ export class FilterCourseComponent {
   addCourseFilter(course: number | string){
     if (typeof course == "number") {
       this.course = course
-      this.postService.courseId = course
+      this.postService.year = course
     }
   }
 

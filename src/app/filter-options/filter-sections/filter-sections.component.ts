@@ -18,7 +18,7 @@ export class FilterSectionsComponent {
   addSectionFilter(item: number | string) {
     if (typeof item == "number") {
       this.section = item
-      this.postService.sectionId = item
+      this.postService.postTypeId = item
     }
   }
 
