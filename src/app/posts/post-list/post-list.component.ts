@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {PostComponent} from "../post/post.component";
-import {AppComponent} from "../../app.component";
+import {Component} from '@angular/core';
+import {PostModel} from "../PostModel";
+import {PostService} from "../../service/post.service";
 
 @Component({
   selector: 'app-post-list',
@@ -10,8 +9,14 @@ import {AppComponent} from "../../app.component";
 })
 export class PostListComponent {
 
-  posts : any = []
+  posts: PostModel[] = []
 
+  constructor(private postService: PostService) {
+  }
 
+  ngDoCheck() {
+    this.posts = this.postService.posts
+    console.log(this.posts)
+  }
 
 }

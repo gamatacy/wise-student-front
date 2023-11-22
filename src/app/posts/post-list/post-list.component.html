@@ -1,5 +1,6 @@
 <div class="w-[800px] max-h-[90vh] mx-auto mt-2 overflow-auto">
-<div *ngFor="let post of posts">
-  post
-</div>
+  <div *ngIf="posts.length == 0" class="text-center mt-[50%] text-xl">Посты не найдены</div>
+  <div *ngFor="let post of posts">
+    <app-post [post] = post></app-post>
+  </div>
 </div>

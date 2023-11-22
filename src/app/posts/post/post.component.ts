@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {PostModel} from "../PostModel";
 
 @Component({
   selector: 'app-post',
@@ -9,8 +10,7 @@ import {CommonModule} from '@angular/common';
 export class PostComponent {
 
 
-  @Input() title: string = ""
-  @Input() text: string = ""
+  @Input() post : PostModel | undefined
 
   fullView: boolean = false
 

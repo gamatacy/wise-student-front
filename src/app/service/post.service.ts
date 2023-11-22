@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
+import {PostModel} from "../posts/PostModel";
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,7 @@ export class PostService {
   pageNumber: number = 0
   pageSize: number = 4
 
-  // @ts-ignore
-  FILE : File
+  posts: PostModel[] = []
 
   postsSearchResult = []
 
@@ -44,7 +44,7 @@ export class PostService {
 
   getPosts() {
 
-    this.http.get(this.url +
+    return this.http.get<PostModel[]>(this.url +
       `?year=${this.year}
     &subjectId=${this.subjects[0][0]}
     &postTypeId=${this.postTypeId}
@@ -52,9 +52,23 @@ export class PostService {
     &page_size=${this.pageSize}`,
     ).subscribe(res => {
 
+      if (res.length == 0) {
+        this.posts = []
+      } else {
+        this.posts = res
+      }
+
     })
 
   }
 
+  // getComments(postId : number){
+  //   return this.http.get('http://localhost:8080/wise-students/post/comments' +
+  //     `?year=${this.year}
+  //   &subjectId=${this.subjects[0][0]}
+  //   &postTypeId=${this.postTypeId}
+  //   &page_number=${this.pageNumber}
+  //   &page_size=${this.pageSize}`,
+  // }
 
 }

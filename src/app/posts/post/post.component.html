@@ -1,10 +1,9 @@
 <div class="max-w-[750px] min-h-[150px] shadow rounded-xl mb-3 hover:bg-gray-100" (click)="setFullView(true)">
 
-   <div class="p-5">
-     <h1>{{title | slice:0:75}}</h1>
-     <span>{{text | slice:0:350}}...</span>
-   </div>
-
+  <div class="p-5">
+    <h1>{{post?.name | slice:0:75}}</h1>
+    <span>{{post?.text| slice:0:350}}...</span>
+  </div>
 
 
 </div>
@@ -13,13 +12,24 @@
 <div *ngIf="fullView">
   <div class="fixed inset-0 overflow-y-auto">
     <div class="flex items-center justify-center min-h-screen bg-black bg-opacity-70" (click)="setFullView(false)">
-      <div class="bg-white p-8 rounded-lg shadow-md h-[80vh] w-[120vh] overflow-auto" (click)="$event.stopPropagation()">
+      <div class="bg-white p-8 rounded-lg shadow-md h-[80vh] w-[120vh] overflow-auto"
+           (click)="$event.stopPropagation()">
 
-        <h1 class="text-2xl">{{title}}</h1>
-        <div class="max-h-[75%] overflow-auto"> <span class="text-lg pr-5 text-justify">{{text}}</span></div>
+        <h1 class="text-2xl">{{post?.name}}</h1>
+        <div class="max-h-[75%] overflow-auto"><span class="text-lg pr-5 text-justify">{{post?.text}}</span></div>
+
+        <div *ngFor="let f of post?.files">
+          <img *ngIf="f.type != 'application/pdf'" src="data:{{f.type}};charset=utf-8;base64,{{f.file}}">
+        </div>
+
+        <div *ngFor="let f of post?.files">
+          <a *ngIf="f.type == 'application/pdf'" href="data:{{f.type}};charset=utf-8;base64,{{f.file}}">{{f.name}}</a>
+        </div>
 
         <br>
         <hr class="border-amber-300 border-2 mt-2 mb-5">
+
+
         <div class="flex justify-between">
           <h2>Комментарии</h2>
           <app-create-comment></app-create-comment>
