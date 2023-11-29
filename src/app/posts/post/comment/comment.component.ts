@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {CommentModel} from "../../CommentModel";
 
 @Component({
   selector: 'app-comment',
@@ -10,7 +11,6 @@ import { CommonModule } from '@angular/common';
 })
 export class CommentComponent {
 
-  author : string = "Maxim Deryugin"
-  text : string = "Очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работа, очень хороший сайт, отличная работаы"
+  @Input() comment : CommentModel | undefined
 
 }

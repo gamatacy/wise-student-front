@@ -19,6 +19,11 @@
 
         <hr class="border-amber-300 border-2 my-5">
 
+        <label for="files" class="text-lg"> <br> Добавить файлы <br></label>
+        <input id="files" type="file" class="" (change)="onFileChange($event)" multiple>
+
+        <hr class="border-amber-300 border-2 my-5">
+
         <div class="flex justify-center my-5">
           <button class="bg-amber-300 p-5 rounded-3xl  text-xl active:bg-amber-400 hover:scale-110" (click)="sendComment()">Создать</button>
         </div>

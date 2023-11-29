@@ -1,0 +1,17 @@
+<div>
+  <div class="flex justify-between">
+    <h2>Комментарии</h2>
+    <app-create-comment [postId]="postId"></app-create-comment>
+  </div>
+
+  <div *ngFor="let comment of comments">
+    <app-comment [comment]="comment" ></app-comment>
+  </div>
+
+  <div class="flex justify-center">
+    <button (click)="prevPage()"><</button>
+    <span>{{page}}</span>
+    <button (click)="nextPage()">></button>
+  </div>
+
+</div>

@@ -1,8 +1,19 @@
 <div class="rounded-xl shadow m-5">
- <div class="p-4">
-   <h2>{{author}}</h2>
-   <span>
-      {{text}}
+  <div class="p-4">
+    <h2>Author</h2>
+    <span>
+      {{comment?.text}}
   </span>
- </div>
+
+    <div>
+      <div *ngFor="let f of comment?.files">
+        <img *ngIf="f.type != 'application/pdf'" src="data:{{f.type}};charset=utf-8;base64,{{f.file}}">
+      </div>
+
+      <div *ngFor="let f of comment?.files">
+        <a *ngIf="f.type == 'application/pdf'" href="data:{{f.type}};charset=utf-8;base64,{{f.file}}">{{f.name}}</a>
+      </div>
+    </div>
+
+  </div>
 </div>

@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
-import {CommonModule} from '@angular/common';
 import {PostModel} from "../PostModel";
+import {PostService} from "../../service/post.service";
+import {CommentModel} from "../CommentModel";
 
 @Component({
   selector: 'app-post',
@@ -9,8 +10,11 @@ import {PostModel} from "../PostModel";
 })
 export class PostComponent {
 
+  constructor(private postService: PostService) {
+  }
 
-  @Input() post : PostModel | undefined
+  @Input() post: PostModel | undefined
+  comments: CommentModel[] = []
 
   fullView: boolean = false
 

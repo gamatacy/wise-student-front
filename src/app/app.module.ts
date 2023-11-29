@@ -17,6 +17,7 @@ import {FormsModule} from "@angular/forms";
 import {CreateSubjectComponent} from "./create-subject/create-subject.component";
 import {CommentComponent} from "./posts/post/comment/comment.component";
 import {CreateCommentComponent} from "./posts/post/create-comment/create-comment.component";
+import {CommentsListComponent} from "./posts/post/comments-list/comments-list.component";
 
 @NgModule({
   declarations: [
@@ -41,14 +42,15 @@ import {CreateCommentComponent} from "./posts/post/create-comment/create-comment
     PostComponent,
     PostListComponent
     ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    CreateSubjectComponent,
-    CommentComponent,
-    CreateCommentComponent,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        FormsModule,
+        CreateSubjectComponent,
+        CommentComponent,
+        CreateCommentComponent,
+        CommentsListComponent,
+    ],
     bootstrap: [AppComponent]
   }
 )

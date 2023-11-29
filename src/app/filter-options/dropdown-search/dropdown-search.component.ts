@@ -17,15 +17,11 @@ export class DropdownSearchComponent {
 
     subject: [number, string][][] = [];
 
-    subjects = [
-        [1, "Математика"],
-        [2, "Программирование"],
-        [3, "Русский"]
-    ]
-
     searchResult: [number, string][][] = [];
 
     search() {
+
+        this.searchResult = []
 
         this.subjectService.getSubjects().subscribe(res => {
             res.forEach(
@@ -37,14 +33,14 @@ export class DropdownSearchComponent {
         })
 
 
-        this.subjects.forEach(subj => {
-            // @ts-ignore
-            if (this.placeHolder == subj[1]) {
-                console.log(this.placeHolder)
-                // @ts-ignore
-                this.searchResult.push(subj)
-            }
-        })
+        // this.subjects.forEach(subj => {
+        //     // @ts-ignore
+        //     if (this.placeHolder == subj[1]) {
+        //         console.log(this.placeHolder)
+        //         // @ts-ignore
+        //         this.searchResult.push(subj)
+        //     }
+        // })
 
     }
 

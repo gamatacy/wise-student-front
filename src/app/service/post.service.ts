@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PostModel} from "../posts/PostModel";
+import {CommentModel} from "../posts/CommentModel";
 
 @Injectable({
   providedIn: 'root'
@@ -62,13 +63,22 @@ export class PostService {
 
   }
 
-  // getComments(postId : number){
-  //   return this.http.get('http://localhost:8080/wise-students/post/comments' +
-  //     `?year=${this.year}
-  //   &subjectId=${this.subjects[0][0]}
-  //   &postTypeId=${this.postTypeId}
-  //   &page_number=${this.pageNumber}
-  //   &page_size=${this.pageSize}`,
-  // }
+  getComments(postId: number, page: number, pageSize : number ) {
+    return this.http.get<CommentModel[]>(`http://localhost:8080/wise-students/post/comments?postId=${postId}&page_number=${page}&page_size=${pageSize}`)
+  }
+
+  createComment(postId: number, text: string, files: File[]) {
+
+    const formData = new FormData();
+
+    formData.append('post_id', String(postId));
+    formData.append('text', text);
+
+    for (const file of files) {
+      formData.append('files', file, file.name);
+    }
+
+    return this.http.post('http://localhost:8080/wise-students/post/comments', formData).subscribe(res => console.log(String(this.postTypeId)))
+  }
 
 }
