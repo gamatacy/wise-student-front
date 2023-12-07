@@ -16,6 +16,8 @@
            (click)="$event.stopPropagation()">
 
         <h1 class="text-2xl">{{post?.name}}</h1>
+        <h1>Автор: {{post?.user?.username}}</h1>
+        <h2>Дата: {{post?.createdAt | slice:0:3}}</h2>
         <div class="max-h-[75%] overflow-auto"><span class="text-lg pr-5 text-justify">{{post?.text}}</span></div>
 
         <div *ngFor="let f of post?.files">

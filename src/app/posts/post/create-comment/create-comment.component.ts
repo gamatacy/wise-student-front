@@ -20,15 +20,21 @@ export class CreateCommentComponent {
   @Input() postId: number | undefined
   author: string = ''
   text: string = ''
+  anon: string = ''
   files: File[] = []
+  anons: string[] = ['no', 'yes']
 
   setFullView(fullView: boolean) {
     this.fullView = fullView
   }
 
+  changeAnon(anon : string){
+    this.anon = anon
+  }
+
   sendComment() {
     // @ts-ignore
-    this.postService.createComment(this.postId, this.text, this.files)
+    this.postService.createComment(this.postId, this.text, this.files, this.anon)
     this.fullView = false
   }
 

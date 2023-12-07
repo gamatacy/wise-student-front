@@ -1,0 +1,24 @@
+<header>
+
+  <div class="absolute top-5 left-5">
+    <button (click)="gotoNews()" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl mr-5 text-lg">News</button>
+    <button *ngIf="isAuth" (click)="gotoPosts()" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl mr-5 text-lg">Posts</button>
+    <button *ngIf="isAdmin" (click)="gotoUsers()" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl  text-lg">Users</button>
+  </div>
+
+  <div *ngIf="!isAuth">
+    <div class="absolute top-5 right-5">
+      <button (click)="gotoSignUp()" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl mr-5 text-lg">Sign up
+      </button>
+      <button (click)="gotoSignIn()" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl text-lg">Sign in</button>
+    </div>
+  </div>
+
+  <div *ngIf="isAuth">
+    <div class="absolute top-5 right-5 flex">
+      <div class="text-lg mr-5 mt-2.5"><span>Username: {{name}}</span></div>
+      <button (click)="logout()" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl mr-5 text-lg">Logout</button>
+    </div>
+  </div>
+
+</header>

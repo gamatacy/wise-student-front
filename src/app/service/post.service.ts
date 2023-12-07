@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {PostModel} from "../posts/PostModel";
 import {CommentModel} from "../posts/CommentModel";
+import {PostTypeModel} from "../filter-options/filter-sections/PostTypeModel";
+import {AuthService} from "./auth.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +13,7 @@ export class PostService {
   url = 'http://localhost:8080/wise-students/posts';
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private authService: AuthService) {
   }
 
   subjects: [number, string][][] = []
@@ -23,6 +25,12 @@ export class PostService {
   posts: PostModel[] = []
 
   postsSearchResult = []
+
+  getPostTypes() {
+    return this.http.get<PostTypeModel[]>("http://localhost:8080/wise-students/post-types", {
+      withCredentials: true
+    });
+  }
 
   createPost(title: string, text: string, files: File[]) {
 
@@ -39,7 +47,9 @@ export class PostService {
       formData.append('files', file, file.name);
     }
 
-    return this.http.post(this.url, formData);
+    return this.http.post(this.url, formData, {
+      withCredentials: true
+    });
 
   }
 
@@ -50,8 +60,9 @@ export class PostService {
     &subjectId=${this.subjects[0][0]}
     &postTypeId=${this.postTypeId}
     &page_number=${this.pageNumber}
-    &page_size=${this.pageSize}`,
-    ).subscribe(res => {
+    &page_size=${this.pageSize}`, {
+      withCredentials: true
+    }).subscribe(res => {
 
       if (res.length == 0) {
         this.posts = []
@@ -63,22 +74,27 @@ export class PostService {
 
   }
 
-  getComments(postId: number, page: number, pageSize : number ) {
-    return this.http.get<CommentModel[]>(`http://localhost:8080/wise-students/post/comments?postId=${postId}&page_number=${page}&page_size=${pageSize}`)
+  getComments(postId: number, page: number, pageSize: number) {
+    return this.http.get<CommentModel[]>(`http://localhost:8080/wise-students/post/comments?postId=${postId}&page_number=${page}&page_size=${pageSize}`, {
+      withCredentials: true
+    })
   }
 
-  createComment(postId: number, text: string, files: File[]) {
+  createComment(postId: number, text: string, files: File[], anon: string) {
 
     const formData = new FormData();
 
     formData.append('post_id', String(postId));
     formData.append('text', text);
+    formData.append('is_anonymous', anon);
 
     for (const file of files) {
       formData.append('files', file, file.name);
     }
 
-    return this.http.post('http://localhost:8080/wise-students/post/comments', formData).subscribe(res => console.log(String(this.postTypeId)))
+    return this.http.post('http://localhost:8080/wise-students/post/comments', formData, {
+      withCredentials: true
+    }).subscribe(res => console.log(String(this.postTypeId)))
   }
 
 }

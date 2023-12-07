@@ -13,4 +13,4 @@
 </div>
 
 <app-create-post></app-create-post>
-<app-create-subject></app-create-subject>
+<app-create-subject *ngIf="isAdmin"></app-create-subject>

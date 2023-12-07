@@ -9,8 +9,12 @@
 
         <h1>Создать комментарий</h1>
 
-        <label for="author" class="text-lg">Автор <br></label>
-        <input id="author" type="text" placeholder="Имя" [(ngModel)]="author" class="h-[30px] w-[50%] text-md mb-5">
+        <h2>Анонимно?</h2>
+        <div class="col-span-6 sm:col-span-3">
+          <select class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">>
+            <option *ngFor="let anon of anons" (click)="changeAnon(anon)">{{anon}}</option>
+          </select>
+        </div>
 
         <hr class="border-amber-300 border-2 my-5">
 
