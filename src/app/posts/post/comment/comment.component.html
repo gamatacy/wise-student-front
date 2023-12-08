@@ -1,7 +1,7 @@
 <div class="rounded-xl shadow m-5">
   <div class="p-4">
     <h2>Автор: {{comment?.user?.username}}</h2>
-    <h2>Дата: {{comment?.createdAt}}</h2>
+    <h2>Дата: {{comment?.createdAt| slice:0:3}}</h2>
     <span>
       {{comment?.text}}
   </span>
@@ -15,6 +15,8 @@
         <a *ngIf="f.type == 'application/pdf'" href="data:{{f.type}};charset=utf-8;base64,{{f.file}}">{{f.name}}</a>
       </div>
     </div>
+
+    <button (click)="deleteComment()" *ngIf="isAdmin" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl text-md">Delete</button>
 
   </div>
 </div>

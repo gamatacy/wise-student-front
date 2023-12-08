@@ -97,4 +97,8 @@ export class PostService {
     }).subscribe(res => console.log(String(this.postTypeId)))
   }
 
+  deleteComment(id: number){
+    return this.http.delete(`http://localhost:8080/wise-students/admin/comment/${id}`, {withCredentials: true})
+  }
+
 }

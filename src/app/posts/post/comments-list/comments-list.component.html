@@ -9,9 +9,29 @@
   </div>
 
   <div class="flex justify-center">
-    <button (click)="prevPage()"><</button>
-    <span>{{page}}</span>
-    <button (click)="nextPage()">></button>
+    <div class="flex flex-col items-center">
+      <!-- Help text -->
+      <span class="text-sm text-gray-700 dark:text-gray-400">
+      Page <span
+        class="font-semibold text-black">{{
+        totalPages == 0 ? 0 : page+1
+        }}</span> of <span
+        class="font-semibold text-black ">{{totalPages}}</span>
+      </span>
+      <!-- Buttons -->
+      <div class="inline-flex mt-2 xs:mt-0">
+        <button
+          (click)="prevPage()"
+          class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-amber-400 rounded-s hover:bg-amber-500 ">
+          Prev
+        </button>
+        <button
+          (click)="nextPage()"
+          class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-amber-400  border-0 border-s border-gray-700 rounded-e hover:bg-amber-500 ">
+          Next
+        </button>
+      </div>
+    </div>
   </div>
 
 </div>

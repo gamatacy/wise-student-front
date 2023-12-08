@@ -9,11 +9,13 @@
         </div>
 
         <div class="mx-auto mt-56 flex justify-center">
-          <input [(ngModel)]="banDate" id="ban-date" type="text" placeholder="yyyy-mm-dd" class="border-2 rounded text-xl">
+          <input [(ngModel)]="banDate" id="ban-date" type="text" placeholder="yyyy-mm-dd"
+                 class="border-2 rounded text-xl">
         </div>
 
         <div class="flex justify-center">
-          <button (click)="ban()" class="bg-amber-400 active:bg-amber-500 px-10 rounded-xl mt-12 mr-5 h-[50px] text-lg" >Ban
+          <button (click)="ban()" class="bg-amber-400 active:bg-amber-500 px-10 rounded-xl mt-12 mr-5 h-[50px] text-lg">
+            Ban
           </button>
         </div>
 
@@ -31,7 +33,7 @@
         <h1>Name: {{user?.name | slice:0:75}}</h1>
         <span>Username: {{user?.username| slice:0:350}}</span>
         <br>
-        <span>Gender: {{user?.gender| slice:0:350}}</span>
+<!--        <span>Gender: {{user?.gender| slice:0:350}}</span>-->
       </div>
 
       <button (click)="setFullView(true, user.username)"
@@ -43,9 +45,31 @@
   </div>
 
   <div class="flex justify-center">
-    <button class="text-lg" (click)="prevPage()"><</button>
-    <span> {{page}} </span>
-    <button class="text-lg" (click)="nextPage()"> ></button>
+
+
+    <div class="flex flex-col items-center">
+      <!-- Help text -->
+      <span class="text-sm text-gray-700 dark:text-gray-400">
+      Page <span
+        class="font-semibold text-black">{{
+        page+1
+        }}</span> of <span
+        class="font-semibold text-black ">{{totalPages}}</span>
+      </span>
+      <!-- Buttons -->
+      <div class="inline-flex mt-2 xs:mt-0">
+        <button
+          (click)="prevPage()"
+          class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-amber-400 rounded-s hover:bg-amber-500 ">
+          Prev
+        </button>
+        <button
+          (click)="nextPage()"
+          class="flex items-center justify-center px-4 h-10 text-base font-medium text-black bg-amber-400  border-0 border-s border-gray-700 rounded-e hover:bg-amber-500 ">
+          Next
+        </button>
+      </div>
+    </div>
   </div>
 
 </div>

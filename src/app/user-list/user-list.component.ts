@@ -29,6 +29,10 @@ export class UserListComponent implements OnInit {
   username: string = ''
   banDate: string = ''
 
+  totalPages: number = 0
+  totalSize: number = 0
+  pageSize: number = 0
+
 
   page = 0
 
@@ -37,12 +41,18 @@ export class UserListComponent implements OnInit {
     this.userService.getUsers(this.page, 5).subscribe(res => {
       // @ts-ignore
       this.users = res.content
+      // @ts-ignore
+      this.totalPages = res.total_pages
+      // @ts-ignore
+      this.totalSize = res.total_size
+      // @ts-ignore
+      this.pageSize = res.page_size
     })
 
   }
 
-  ban(){
-    this.userService.banUser(this.username,this.banDate).subscribe()
+  ban() {
+    this.userService.banUser(this.username, this.banDate).subscribe()
   }
 
   setFullView(value: boolean, username: string) {
@@ -56,8 +66,10 @@ export class UserListComponent implements OnInit {
   }
 
   nextPage() {
-    ++this.page
-    this.getUsers()
+    if (this.page+1 < this.totalPages) {
+      ++this.page
+      this.getUsers()
+    }
   }
 
 
