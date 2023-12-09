@@ -14,9 +14,9 @@ export class UserService {
     return this.http.get(`http://localhost:8080/wise-students/user?page=${page}`);
   }
 
-  banUser(username: string, date: string) {
+  banUser(id: number, date: string) {
     return this.http.post("http://localhost:8080/wise-students/admin/user/ban", {
-      username: username,
+      userId: id,
       date: date
     }, {withCredentials: true})
   }

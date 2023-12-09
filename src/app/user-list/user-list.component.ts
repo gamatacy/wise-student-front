@@ -26,7 +26,7 @@ export class UserListComponent implements OnInit {
 
   users: UserModel[] = []
   fullView: boolean = false
-  username: string = ''
+  id: number = -1
   banDate: string = ''
 
   totalPages: number = 0
@@ -52,11 +52,11 @@ export class UserListComponent implements OnInit {
   }
 
   ban() {
-    this.userService.banUser(this.username, this.banDate).subscribe()
+    this.userService.banUser(this.id, this.banDate).subscribe()
   }
 
-  setFullView(value: boolean, username: string) {
-    this.username = username
+  setFullView(value: boolean, id: number) {
+    this.id = id
     this.fullView = value
   }
 
