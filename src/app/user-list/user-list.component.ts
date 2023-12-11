@@ -55,6 +55,10 @@ export class UserListComponent implements OnInit {
     this.userService.banUser(this.id, this.banDate).subscribe()
   }
 
+  addToModerators(username: string) {
+    this.userService.addToModerators(username).subscribe()
+  }
+
   setFullView(value: boolean, id: number) {
     this.id = id
     this.fullView = value
@@ -66,7 +70,7 @@ export class UserListComponent implements OnInit {
   }
 
   nextPage() {
-    if (this.page+1 < this.totalPages) {
+    if (this.page + 1 < this.totalPages) {
       ++this.page
       this.getUsers()
     }

@@ -21,4 +21,11 @@ export class UserService {
     }, {withCredentials: true})
   }
 
+  addToModerators(username: string){
+    return this.http.post("http://localhost:8080/wise-students/admin/add-moderator", {
+      username: username,
+      password: "1"
+    }, {withCredentials: true})
+  }
+
 }

@@ -1,5 +1,8 @@
 import {Component} from "@angular/core";
 
+
+// TODO: Fix admin urls, Add moderator creation to UI, Add post deletion
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

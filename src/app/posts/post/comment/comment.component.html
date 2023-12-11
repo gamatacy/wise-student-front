@@ -16,7 +16,7 @@
       </div>
     </div>
 
-    <button (click)="deleteComment()" *ngIf="isAdmin" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl text-md">Delete</button>
+    <button (click)="deleteComment()" *ngIf="isDeletable" class="bg-amber-400 active:bg-amber-500 p-3 rounded-xl text-md">Delete</button>
 
   </div>
 </div>

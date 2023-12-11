@@ -17,20 +17,31 @@ export class CommentComponent implements OnInit {
   }
 
   @Input() comment: CommentModel | undefined
-  isAdmin: boolean = false
+  isDeletable: boolean = false
 
   ngOnInit(): void {
 
 
     this.authService.isAdmin().then(
       res => {
-        this.isAdmin = true
+        this.isDeletable = true
       }
     ).catch(
       res => {
-        if (res.response.status != 403) this.isAdmin = true
+        if (res.response.status != 403) this.isDeletable = true
       }
     );
+
+    this.authService.isModerator().then(
+      res => {
+        this.isDeletable = true
+      }
+    ).catch(
+      res => {
+        if (res.response.status != 403) this.isDeletable = true
+      }
+    );
+
 
   }
 

@@ -37,6 +37,7 @@ export class AuthService {
     });
   }
 
+
   signUp(username: string, name: string, password: string, city: string, gender: string) {
     this.http.post<UserModel>("http://localhost:8080/wise-students/auth/registration", {
       username: username,

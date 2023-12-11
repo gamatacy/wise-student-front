@@ -35,10 +35,15 @@
         <br>
 <!--        <span>Gender: {{user?.gender| slice:0:350}}</span>-->
       </div>
+      
+      <button (click)="addToModerators(user.username)"
+              class="bg-amber-400 active:bg-amber-500 px-10 rounded-xl mt-12 mr-5 h-[50px] text-lg">Add to moderators
+      </button>
 
       <button (click)="setFullView(true, user.id)"
               class="bg-amber-400 active:bg-amber-500 px-10 rounded-xl mt-12 mr-5 h-[50px] text-lg">Ban
       </button>
+
 
 
     </div>

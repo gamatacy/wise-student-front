@@ -98,7 +98,7 @@ export class PostService {
   }
 
   deleteComment(id: number){
-    return this.http.delete(`http://localhost:8080/wise-students/admin/comment/${id}`, {withCredentials: true})
+    return this.http.delete(`http://localhost:8080/wise-students/post/comments/moder/${id}`, {withCredentials: true})
   }
 
 }
