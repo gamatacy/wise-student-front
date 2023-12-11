@@ -1,12 +1,12 @@
-<div class="w-[800px] max-h-[90vh] mx-auto mt-2 overflow-auto">
-  <div *ngIf="news.length == 0" class="text-center mt-[50%] text-xl">Новости не найдены</div>
-  <div *ngFor="let n of news">
-    <app-news [news]=n></app-news>
+<div>
+  <div class="flex justify-between">
+    <h2>Комментарии</h2>
+    <app-create-news-comment [newsId]="newsId"></app-create-news-comment>
   </div>
-</div>
 
-<div *ngIf="news.length != 0" class="flex justify-center">
-
+  <div *ngFor="let comment of comments">
+    <app-comment [comment]="comment"></app-comment>
+  </div>
 
   <div class="flex flex-col items-center">
     <!-- Help text -->
@@ -34,4 +34,3 @@
   </div>
 
 </div>
-

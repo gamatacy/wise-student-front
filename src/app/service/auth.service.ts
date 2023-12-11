@@ -31,6 +31,12 @@ export class AuthService {
     });
   }
 
+  async isModerator() {
+    return await axios.get("http://localhost:8080/wise-students/post/comments/moder/0", {
+      withCredentials: true
+    });
+  }
+
   signUp(username: string, name: string, password: string, city: string, gender: string) {
     this.http.post<UserModel>("http://localhost:8080/wise-students/auth/registration", {
       username: username,
@@ -61,7 +67,7 @@ export class AuthService {
   logout() {
     this.http.get("http://localhost:8080/wise-students/auth/logout", {
       withCredentials: true
-    }).subscribe( res => {
+    }).subscribe(res => {
       console.log("logout")
     })
   }
