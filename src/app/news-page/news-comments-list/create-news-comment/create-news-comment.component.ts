@@ -36,6 +36,7 @@ export class CreateNewsCommentComponent {
   }
 
   sendComment() {
+    // @ts-ignore
     this.newsService.createComment(this.newsId, this.text, this.files, this.anon)
     this.fullView = false
   }

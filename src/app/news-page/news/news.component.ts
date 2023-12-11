@@ -19,24 +19,11 @@ import {NewsCommentsListComponent} from "../news-comments-list/news-comments-lis
   templateUrl: './news.component.html',
   styleUrl: './news.component.css'
 })
-export class NewsComponent implements OnInit {
+export class NewsComponent{
 
   constructor(private authService: AuthService) {
   }
 
-  canComment: boolean = false
-
-  ngOnInit(): void {
-    this.authService.isAuth().then(
-      res => {
-        this.canComment = true
-      }
-    ).catch(
-      res => {
-        if (res.response.status != 403) this.canComment = true
-      }
-    );
-  }
 
   @Input() news: NewsModel | undefined
   comments: CommentModel[] = []

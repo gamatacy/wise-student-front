@@ -1,10 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {CommentComponent} from "../../posts/post/comment/comment.component";
 import {CreateCommentComponent} from "../../posts/post/create-comment/create-comment.component";
-import {NgForOf} from "@angular/common";
+import {NgForOf, NgIf} from "@angular/common";
 import {NewsService} from "../../service/news.service";
 import {CommentModel} from "../../posts/CommentModel";
 import {CreateNewsCommentComponent} from "./create-news-comment/create-news-comment.component";
+import {AuthService} from "../../service/auth.service";
+import {Router} from "@angular/router";
+import {ThreadComponent} from "./thread/thread.component";
+import {NewsCommentComponent} from "./news-comment/news-comment.component";
 
 @Component({
   selector: 'app-news-comments-list',
@@ -13,15 +17,20 @@ import {CreateNewsCommentComponent} from "./create-news-comment/create-news-comm
     CommentComponent,
     CreateCommentComponent,
     NgForOf,
-    CreateNewsCommentComponent
+    CreateNewsCommentComponent,
+    NgIf,
+    ThreadComponent,
+    NewsCommentComponent
   ],
   templateUrl: './news-comments-list.component.html',
   styleUrl: './news-comments-list.component.css'
 })
 export class NewsCommentsListComponent implements OnInit {
 
-  constructor(private newsService: NewsService) {
+  constructor(private newsService: NewsService, private authService: AuthService, private router: Router) {
   }
+
+  canComment: boolean = false
 
   comments: CommentModel[] = []
   @Input() newsId: number | undefined
@@ -29,6 +38,19 @@ export class NewsCommentsListComponent implements OnInit {
   pageSize = 5
 
   ngOnInit(): void {
+    // this.router.events.subscribe(z => {
+    this.authService.isAuth().then(
+      res => {
+        this.canComment = true
+      }
+    ).catch(
+      res => {
+        if (res.response.status != 403) this.canComment = true
+      }
+    )
+    console.log(this.canComment)
+    // }
+    // )
     this.getComments()
   }
 

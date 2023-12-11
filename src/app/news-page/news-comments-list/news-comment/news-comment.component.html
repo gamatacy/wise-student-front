@@ -1,0 +1,2 @@
+<app-comment (click)="threadVisible=!threadVisible" [comment]="comment"></app-comment>
+<app-thread *ngIf="threadVisible" [threadId]="comment?.id"></app-thread>
